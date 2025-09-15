@@ -1,6 +1,11 @@
 const map = L.map('map').setView([31.818, 75.207], 13);
 
+function filterRoute() {
+  const start = document.getElementById("start").value;
+  const end = document.getElementById("end").value;
 
+  alert(`Searching route from ${start} to ${end}`);
+}
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '© OpenStreetMap contributors'
@@ -42,4 +47,5 @@ const route_2 = [
 
 L.polyline(route_2, { color: 'green' }).addTo(map)
   .bindPopup("Bus Route 2");
+
 
