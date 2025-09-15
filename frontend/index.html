@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Batala Transport Tracker</title>
   <link rel="stylesheet" href="style.css">
-
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 <body>
@@ -13,7 +12,19 @@
     <h1>Batala Transport Tracking Prototype</h1>
   </header>
 
-  <main>
+  <main style="display: flex; height: 90vh;">
+    <div id="sidebar" style="width: 300px; background: #f8f9fa; padding: 15px; border-right: 2px solid #ddd;">
+      <h3>Find Your Bus Route</h3>
+      
+      <label for="start">Boarding Stop:</label><br>
+      <input type="text" id="start" placeholder="Enter starting stop"><br><br>
+      
+      <label for="end">Destination Stop:</label><br>
+      <input type="text" id="end" placeholder="Enter destination stop"><br><br>
+      
+      <button onclick="filterRoute()">Show Route</button>
+    </div>
+
     <div id="map"></div>
   </main>
 
