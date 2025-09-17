@@ -1,34 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Batala Transport Tracker</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Batala Bus Routes - Find and track your bus routes easily with live maps." />
+  <title>Batala Bus Routes</title>
+
+  <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Sidebar */
+    #sidebar {
+      width: 320px;
+      background: #f8f9fa;
+      padding: 20px;
+      border-right: 2px solid #ddd;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #sidebar h3 {
+      margin-top: 0;
+      color: #222;
+      text-align: center;
+    }
+
+    label {
+      font-weight: 600;
+      margin-top: 12px;
+      display: block;
+    }
+
+    select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+      border: 1px solid #bbb;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    #sidebar button {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    #sidebar button:hover {
+      opacity: 0.9;
+    }
+
+    /* Row buttons */
+    #sidebar .button-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    #sidebar .button-row button:nth-child(2) {
+      background: #ffc107;
+      color: #000;
+    }
+
+    #sidebar button.locate-btn {
+      margin-top: 10px;
+      background: #28a745;
+      color: #fff;
+    }
+
+    /* Route Info Panel */
+    #route-info {
+      margin-top: 20px;
+      padding: 15px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      display: none;
+      font-size: 14px;
+    }
+
+    #route-info h4 {
+      margin: 0 0 12px 0;
+      color: #444;
+      font-size: 16px;
+    }
+
+    #route-info p {
+      margin: 6px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Map Area */
+    #map {
+      flex: 1;
+    }
+
+    /* Responsive Fix */
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+      #sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 2px solid #ddd;
+      }
+      #map {
+        height: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>Batala Transport Tracking Prototype</h1>
-  </header>
+  <!-- Sidebar -->
+  <aside id="sidebar">
+    <h3>🚌 Find Your Bus Route</h3>
 
-  <main style="display: flex; height: 90vh;">
-    <div id="sidebar" style="width: 300px; background: #f8f9fa; padding: 15px; border-right: 2px solid #ddd;">
-      <h3>Find Your Bus Route</h3>
-      
-      <label for="start">Boarding Stop:</label><br>
-      <input type="text" id="start" placeholder="Enter starting stop"><br><br>
-      
-      <label for="end">Destination Stop:</label><br>
-      <input type="text" id="end" placeholder="Enter destination stop"><br><br>
-      
-      <button onclick="filterRoute()">Show Route</button>
+    <label for="start">🚏 Boarding Stop:</label>
+    <select id="start" aria-label="Select starting bus stop"></select>
+
+    <label for="end">🏁 Destination Stop:</label>
+    <select id="end" aria-label="Select destination bus stop"></select>
+
+    <div class="button-row">
+      <button id="showRouteBtn" onclick="filterRoute()">🔍 Show Route</button>
+      <button onclick="swapStops()">🔄 Swap</button>
     </div>
 
-    <div id="map"></div>
-  </main>
+    <button class="locate-btn" onclick="locateMe()">📍 Locate Me</button>
 
+    <!-- Route Info Panel -->
+    <section id="route-info" aria-live="polite">
+      <h4>📍 Route Info</h4>
+      <p><span>📏 Distance:</span> <span id="distance">--</span></p>
+      <p><span>⏱️ Duration:</span> <span id="duration">--</span></p>
+    </section>
+  </aside>
+
+  <!-- Map -->
+  <main id="map"></main>
+
+  <!-- Scripts -->
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-  <script src="script.js"></script>
+  <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+  <script src="script.js" defer></script>
 </body>
 </html>

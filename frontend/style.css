@@ -1,26 +1,142 @@
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Poppins', sans-serif;
   margin: 0;
   padding: 0;
-  text-align: center;
+  background: #f8f9fa;
+  color: #2c3e50;
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
 }
 
-header {
-  background: #2c3e50;
-  color: white;
-  padding: 15px;
+/* Sidebar */
+#sidebar {
+  width: 320px;
+  background: #fff;
+  padding: 20px;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+  border-radius: 0 10px 10px 0;
+  display: flex;
+  flex-direction: column;
 }
 
-#map {
-  width: 90%;
-  height: 80vh;
-  margin: 20px auto;
-  border: 2px solid #333;
-  border-radius: 8px;
+#sidebar h3 {
+  font-size: 20px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #1e88e5;
+  justify-content: center;
 }
 
-footer {
-  background: #eee;
+label {
+  font-weight: 600;
+  margin: 10px 0 5px;
+  display: block;
+}
+
+select {
+  width: 100%;
   padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
   font-size: 14px;
+}
+
+/* Buttons */
+button {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  background: #1e88e5;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background: #1565c0;
+  transform: translateY(-2px);
+}
+
+/* Button Row (Show + Swap) */
+.button-row {
+  display: flex;
+  gap: 10px;
+}
+
+.button-row button {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.button-row button:nth-child(2) {
+  background: #ffc107;
+  color: #000;
+}
+
+button.locate-btn {
+  background: #28a745;
+  color: #fff;
+}
+
+/* Route Info Card */
+#route-info {
+  background: #fff;
+  border-radius: 10px;
+  padding: 15px;
+  margin-top: 15px;
+  text-align: left;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.4s ease-in-out;
+}
+
+#route-info.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#route-info h4 {
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #e53935;
+}
+
+#route-info p {
+  font-size: 14px;
+  margin: 5px 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Map Styling */
+#map {
+  flex: 1;
+  height: 100%;
+}
+
+/* Responsive */
+@media(max-width: 768px) {
+  #sidebar {
+    width: 100%;
+    height: auto;
+    border-radius: 0;
+  }
+  #map {
+    width: 100%;
+    margin: 0;
+    height: 70vh;
+  }
 }
