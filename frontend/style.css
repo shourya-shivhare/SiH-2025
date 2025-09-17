@@ -11,12 +11,42 @@ header {
   padding: 15px;
 }
 
+#sidebar {
+  width: 300px;
+  background: #f8f9fa;
+  padding: 15px;
+  border-right: 2px solid #ddd;
+  text-align: left;
+}
+
+#sidebar h3 {
+  margin-top: 0;
+}
+
+#sidebar select, #sidebar button {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid #aaa;
+}
+
 #map {
-  width: 90%;
-  height: 80vh;
-  margin: 20px auto;
-  border: 2px solid #333;
-  border-radius: 8px;
+  flex-grow: 1;
+  height: 90vh;
+  border-left: 2px solid #333;
+}
+
+button {
+  background: #2c3e50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button:hover {
+  background: #1abc9c;
 }
 
 footer {

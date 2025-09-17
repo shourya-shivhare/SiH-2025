@@ -13,14 +13,18 @@
   </header>
 
   <main style="display: flex; height: 90vh;">
-    <div id="sidebar" style="width: 300px; background: #f8f9fa; padding: 15px; border-right: 2px solid #ddd;">
+    <div id="sidebar">
       <h3>Find Your Bus Route</h3>
       
       <label for="start">Boarding Stop:</label><br>
-      <input type="text" id="start" placeholder="Enter starting stop"><br><br>
+      <select id="start">
+        <option value="">Select starting stop</option>
+      </select><br><br>
       
       <label for="end">Destination Stop:</label><br>
-      <input type="text" id="end" placeholder="Enter destination stop"><br><br>
+      <select id="end">
+        <option value="">Select destination stop</option>
+      </select><br><br>
       
       <button onclick="filterRoute()">Show Route</button>
     </div>
@@ -28,7 +32,12 @@
     <div id="map"></div>
   </main>
 
+  <footer>
+    © 2025 Batala Transport Prototype
+  </footer>
+
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
+
